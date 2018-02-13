@@ -12,7 +12,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             isset($_POST['hospital']))
         {
         //operate the data further 
- 
         $db = new DbOperations();
  
         $result = $db->EditUserRequest(
@@ -21,6 +20,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             , $_POST['blood_bottle']
             , $_POST['city']
             , $_POST['hospital']);
+        
+        $result = $db->getUserByMobileForBloodRequest($_POST['mobile']);    
+        $response['mobile'] = $result['mobile'];
+        $response['blood_group'] = $result['blood_group'];
+        $response['blood_bottle'] = $result['blood_bottle'];
+        $response['city'] = $result['city'];
+        $response['hospital'] = $result['hospital'];
+        
         if($result == 1){
             $response['error'] = false;
             $response['message'] = "Request update successfully";
