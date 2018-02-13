@@ -21,15 +21,16 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             , $_POST['city']
             , $_POST['hospital']);
         
-        $result = $db->getUserByMobileForBloodRequest($_POST['mobile']);    
-        $response['mobile'] = $result['mobile'];
-        $response['blood_group'] = $result['blood_group'];
-        $response['blood_bottle'] = $result['blood_bottle'];
-        $response['city'] = $result['city'];
-        $response['hospital'] = $result['hospital'];
-        
         if($result == 1){
             $response['error'] = false;
+            
+            $result = $db->getUserByMobileForBloodRequest($_POST['mobile']);
+            $response['mobile'] = $result['mobile'];
+            $response['blood_group'] = $result['blood_group'];
+            $response['blood_bottle'] = $result['blood_bottle'];
+            $response['city'] = $result['city'];
+            $response['hospital'] = $result['hospital'];
+            
             $response['message'] = "Request update successfully";
         }
         else{       

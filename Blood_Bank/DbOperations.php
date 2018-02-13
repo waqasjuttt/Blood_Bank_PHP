@@ -45,6 +45,13 @@
             return $stmt->get_result()->fetch_assoc();
         }
         
+        public function getUserByMobileForBloodRequestDetails($mobile_number){
+            $stmt = $this->con->prepare("SELECT * FROM blood_request WHERE mobile =?");
+            $stmt->bind_param("s", $mobile_number);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        }
+        
         public function getUserByMobileForBloodRequest($mobile_number){
             $stmt = $this->con->prepare("SELECT * FROM blood_request WHERE mobile =?");
             $stmt->bind_param("s", $mobile_number);
